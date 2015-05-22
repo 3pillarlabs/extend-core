@@ -1,0 +1,11 @@
+{
+  "name": "modular-scale",
+  "version": "0.0.1",
+  "description": "extend modular scale in sass",
+  "main": "_modular-scale.scss",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Adi Chikara",
+  "license": "MIT"
+}
