@@ -1,0 +1,17 @@
+
+@import "../constants";
+
+@import "factorial";
+@import "exponential";
+
+@import "ldexp";
+@import "frexp";
+@import "log";
+
+@import "pow";
+
+#test {
+	pow1: pow(4, 2);
+	pow2: pow(4, -2);
+	pow3: pow(4, 0.2);
+}

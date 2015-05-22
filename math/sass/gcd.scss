@@ -1,0 +1,20 @@
+// http://rosettacode.org/wiki/Greatest_common_divisor#JavaScript
+// greatest common divisor (GCD) of two numbers is a largest
+// positive numbers which can divide both numbers without any remainder.
+// @param {Number} $a
+// @param {Number} $b
+// @example
+//		gcd(4,8) // 2
+//		gcd(12,16) // 4
+
+@function gcd($a, $b) {
+  @if ($b != 0) {
+    @return gcd($b, $a % $b);
+  } @else {
+    @return abs($a);
+  }
+}
+
+@function hcf($a, $b) {
+  @return gcd($a, $b);
+}

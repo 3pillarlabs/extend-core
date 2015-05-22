@@ -1,0 +1,20 @@
+
+@function ln($x) {
+  @if $x <= 0 {
+    @return 0 / 0;
+  }
+  $k: nth(frexp($x / $sqrt2), 2);
+  $x: $x / ldexp(1, $k);
+  $x: ($x - 1) / ($x + 1);
+  $x2: $x * $x;
+  $i: 1;
+  $s: $x;
+  $sp: null;
+  @while $sp != $s {
+    $x: $x * $x2;
+    $i: $i + 2;
+    $sp: $s;
+    $s: $s + $x / $i;
+  }
+  @return $ln2 * $k + 2 * $s;
+}

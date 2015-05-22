@@ -1,0 +1,14 @@
+// http://en.wikipedia.org/wiki/Exponential_function
+// @param {Number} $num
+// @return {Number}
+// @example
+//     exponential(1)  // 2.71828
+//     exponential(-1) // 0.36788
+
+@function exponential ($num) {
+  $ret: 0;
+  @for $n from 0 to 24 {
+    $ret: $ret + pow($num, $n) / factorial($n);
+  }
+  @return $ret;
+}

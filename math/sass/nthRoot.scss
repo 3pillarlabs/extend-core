@@ -1,0 +1,23 @@
+// http://en.wikipedia.org/wiki/Nth_root
+// http://rosettacode.org/wiki/Nth_root#JavaScript
+// @param {Number} $num
+// @param {Number} $n  degree of the root
+// @return {Number}
+
+@function nth-root($num, $n: 2, $prec: 12) {
+  $x: 1;
+
+  @for $i from 0 through $prec {
+    $x: 1 / $n * (($n - 1) * $x + ($num / pow($x, $n - 1)));
+  }
+
+  @return $x;
+}
+
+// @example
+//     sqrt(2) // 1.41421
+//     sqrt(5) // 2.23607
+
+@function sqrt ($num) {
+  @return nth-root($num);
+}

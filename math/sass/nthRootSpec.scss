@@ -1,0 +1,24 @@
+
+@import "pow";
+@import "nthRoot";
+
+#test {
+  cube_root_of_27: nth-root(27, 3);
+
+  $var1: sqrt(2);
+  $var2: 1.41421;
+
+  //@debug $var1 == $var2;
+
+  @if $var1 == $var2 {
+  	sqrt_of_2: PASS;
+  } @else {
+  	sqrt_of_2: type-of($var2);
+  }
+
+  @if(sqrt(5) == 2.23607) {
+  	sqrt_of_5: PASS;
+  } @else {
+  	sqrt_of_5: FAIL;
+  }
+}

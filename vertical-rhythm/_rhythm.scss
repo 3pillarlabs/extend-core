@@ -1,0 +1,66 @@
+//
+// Rhythm
+// --------------------------------------------------
+@import 'helpers/strip-units';
+@import 'helpers/px-to-rem';
+
+// Functions
+// ⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻
+
+@function line-height($font-size, $line-height) {
+  $i: 0;
+  $line-height-round: $font-size * $vr-base-line-height;
+  @if $line-height > $vr-base-size {
+    @while $line-height > modular-scale($vr-base-size, $i, $vr-ms-ratio) {
+      $i: $i + 1;
+    }
+  } @else {
+    @while $line-height < modular-scale($vr-base-size, $i, $vr-ms-ratio) {
+      $i: $i - 1;
+    }
+  }
+
+  $line-height-floor: floor(abs($line-height - modular-scale($vr-base-size, ($i - 1), $vr-ms-ratio)));
+
+  $line-height-ceil: ceil(abs($line-height - modular-scale($vr-base-size, $i, $vr-ms-ratio)));
+
+  @if $line-height-floor <= $line-height-ceil {
+    $line-height-round: modular-scale($vr-base-size, ($i - 1), $vr-ms-ratio);
+  } @else {
+    $line-height-round: modular-scale($vr-base-size, $i, $vr-ms-ratio);
+  }
+
+  @return $line-height-round;
+}
+
+
+// Mixins
+// ⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻
+
+@mixin font-size($font-size) {
+
+  font-size: rem($font-size);
+  $line-height: $font-size * $vr-base-line-height;
+
+  @if $line-height == $vr-base-size {
+    line-height: ($font-size * $vr-base-line-height);
+  } @else {
+    line-height: line-height($font-size, $line-height);
+  }
+
+}
+
+@mixin vr-box-size($font-size) {
+
+  $line-height: $font-size * $vr-base-line-height;
+
+  @if $line-height == $vr-base-size {
+    $size: ($font-size * $vr-base-line-height);
+    height: $size;
+    width: $size;
+  } @else {
+    $size: line-height($font-size, $line-height);
+    height: $size;
+    width: $size;
+  }
+}
